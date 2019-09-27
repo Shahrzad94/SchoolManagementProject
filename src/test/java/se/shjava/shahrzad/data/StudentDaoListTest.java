@@ -55,6 +55,28 @@ public class StudentDaoListTest {
         assertEquals(true,testStudentDaoListObj.deleteStudent(testStudents));
         assertEquals(false,testStudentDaoListObj.deleteStudent(testStudents));
     }
+    @Test
+    public void test_Find_Student_byId()
+    {
+        testStudentDaoListObj.saveStudent(testStudents);
+        Student excepted= testStudents;
+        Student actual= testStudentDaoListObj.findById(20);
+      //  assertEquals(excepted, actual);
+       actual= testStudentDaoListObj.findById(30);
+       assertEquals(null, actual);
+    }
+
+    @Test
+    public void test_Find_Student_byName(){
+        List<Student> expectedNameLists= new ArrayList<>();
+        expectedNameLists.add(testStudents);
+        testStudentDaoListObj.saveStudent(testStudents);
+
+        List<Student> actual= testStudentDaoListObj.findByName("test");
+        assertEquals(expectedNameLists,actual);     // not working
+
+    }
+
 
 
 }
