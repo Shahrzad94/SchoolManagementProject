@@ -77,7 +77,6 @@ public class ShowProgram {
                     String choice= scanner.nextLine();
                     if(choice.equalsIgnoreCase("R")){
                         System.out.println(" Register a student : you need to select a student from the list : ");
-                        System.out.println("Select a student by email or id");
                     /// register/remove student
                     }
 
