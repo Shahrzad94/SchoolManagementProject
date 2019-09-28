@@ -156,36 +156,24 @@ public class ShowProgram {
                         String newEmail = scanner.nextLine();
                         System.out.println("Edited address : ");
                         String newAddress = scanner.nextLine();
-
                         Student editStudent = new Student(newName, newEmail, newAddress);
                         studentList.saveStudent(editStudent);
                         System.out.println("Student is updated: "+ editStudent.toString());
 
-
                     } else if(choice4.equalsIgnoreCase("C")){
-                        System.out.println("Here you can enter wished course id to edit");
+                        System.out.println("Here you can enter wished course id to edit the chosen course");
+                        System.out.println("Enter new information");
+                        System.out.println("Enter a new Course name: ");
+                        String cName= scanner.nextLine();
+                        System.out.println("Enter a valid issue date");
+                        LocalDate cDate= LocalDate.parse(scanner.nextLine());
+                        System.out.println("Enter a new duration of the course");
+                        int courseDuration= Integer.parseInt(scanner.next());
 
-                       Course listOfCourses= courseList.findById(scanner.nextInt());
-                        System.out.println("Write a new name: ");
+                        System.out.println("Your course is edited! ");
+                        Course editedCourse= new Course(cName,cDate,courseDuration);
+                        courseList.saveCourse(editedCourse);
 
-                   try {
-                       scanner.nextLine();
-                       listOfCourses.setCourseName(scanner.nextLine());            //doesnt go through this line! NullPointerException
-                       System.out.println("Course name is updated !! ");
-
-                       System.out.println(" Update the date of issue of the course: enter the date of issue");
-                       listOfCourses.setStartDate(LocalDate.parse(scanner.nextLine()));
-                       System.out.println("The date of course is now updated!");
-
-                       System.out.println("Enter new duration of course");
-                       scanner.nextLine();
-                       listOfCourses.setWeekDuration(Integer.parseInt(scanner.next()));
-                       System.out.println(" Duration is updated ...");
-                       System.out.println(" Your new course is now made : " + listOfCourses.toString());
-                   } catch (NullPointerException ex){
-
-                       System.out.println("Enter valid information");
-                   }
                     }
                     break;
                 }
