@@ -72,7 +72,6 @@ public class ShowProgram {
                     }
                     break;
 
-
                 case "2": {
                     System.out.println(" Register or Remove a student : to register a student enter R and to remove a student enter D ");
                     String choice = scanner.nextLine();
@@ -89,7 +88,7 @@ public class ShowProgram {
                    } else if (choice.equalsIgnoreCase("D")) {
                         System.out.println("Here you can delete a student from a course");
                         System.out.println("to delete a student enter a valid mail");
-
+                             // working ....
 
                     } break;
                 }
@@ -104,9 +103,25 @@ public class ShowProgram {
                                 " 2. id" +
                                 " 3. email" +
                                 " 4. list of all students");
-                        System.out.println("Finding student by name: ");
-                        String stName = scanner.nextLine();
-                        System.out.println(studentList.findByName(stName));
+                        String choice3FindingStudents= scanner.nextLine();
+                        if (choice3FindingStudents.equalsIgnoreCase("1")){
+                            System.out.println("Finding student by name: ");
+                            String stName = scanner.nextLine();
+                            System.out.println(studentList.findByName(stName));
+                        } else if (choice3FindingStudents.equalsIgnoreCase("2")){
+                            System.out.println("Finding student by Id");
+                            int stId= scanner.nextInt();
+                            System.out.println(studentList.findById(stId));
+                        } else if (choice3FindingStudents.equalsIgnoreCase("3")){
+                            System.out.println("Finding student by email");
+                            String stEmail= scanner.nextLine();
+                            System.out.println(studentList.findByEmail(stEmail));
+
+                        } else if (choice3FindingStudents.equalsIgnoreCase("4")){
+                            System.out.println(studentList.findAll());
+                        }
+
+
                     } else if (choice3.equalsIgnoreCase("C")) {
                         System.out.println("Finding a course ......");
                         String courseName = scanner.nextLine();
