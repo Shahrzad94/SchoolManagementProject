@@ -85,7 +85,7 @@ public class ShowProgram {
                         courseList.findById(scanner.nextInt()).registerStudents(studentMail);
                         System.out.println("*****************************************************************************************************************************************");
 
-                   } else if (choice.equalsIgnoreCase("D")) {
+                   } else if (choice.equalsIgnoreCase("D")) {             //deleting student is left
                         System.out.println("Here you can delete a student from a course");
                         System.out.println("to delete a student enter a valid mail");
                              // working ....
@@ -101,13 +101,12 @@ public class ShowProgram {
                     if (choice3.equalsIgnoreCase("S")) {
                         System.out.println("You can find students by : 1. name" +
                                 " 2. id" +
-                                " 3. email" +
-                                " 4. list of all students");
+                                " 3. email" );
                         String choice3FindingStudents= scanner.nextLine();
                         if (choice3FindingStudents.equalsIgnoreCase("1")){
                             System.out.println("Finding student by name: ");
                             String stName = scanner.nextLine();
-                            System.out.println(studentList.findByName(stName));
+                            System.out.println(studentList.findByName(stName) + stName);
                         } else if (choice3FindingStudents.equalsIgnoreCase("2")){
                             System.out.println("Finding student by Id");
                             int stId= scanner.nextInt();
@@ -117,20 +116,33 @@ public class ShowProgram {
                             String stEmail= scanner.nextLine();
                             System.out.println(studentList.findByEmail(stEmail));
 
-                        } else if (choice3FindingStudents.equalsIgnoreCase("4")){
-                            System.out.println(studentList.findAll());
-                        }
-
-
-                    } else if (choice3.equalsIgnoreCase("C")) {
+                        }  }
+                    else if (choice3.equalsIgnoreCase("C")) {
                         System.out.println("Finding a course ......");
-                        String courseName = scanner.nextLine();
-                        System.out.println(courseList.findByName(courseName));
+                        System.out.println("You can find your course by : " +
+                                "1. Course Name" +
+                                 "2. Course id" +
+                                  "3. Course date");
+                        String choice3FindingCourse= scanner.nextLine();
+                        if(choice3FindingCourse.equalsIgnoreCase("1")){
+                            System.out.println("Finding course by name: pls write the course name");
+                            String CourseName= scanner.nextLine();
+                            System.out.println(courseList.findByName(CourseName));
+                        } else if (choice3FindingCourse.equalsIgnoreCase("2")){
+                            System.out.println("Finding a course by id");
+                            int courseId= scanner.nextInt();
+                            System.out.println(courseList.findById(courseId));
+
+                        } else if (choice3FindingCourse.equalsIgnoreCase("3")){
+                            System.out.println("Enter a valid date to find the course ");
+                            LocalDate courseDate= LocalDate.parse(scanner.nextLine());
+                            System.out.println(courseList.findByDate(courseDate));
+                        }
                     }
                 }
                 break;
-                case "4": {
-                    System.out.println("Here you can edit any students or any course");
+                case "4": {           // need to check igen
+                    System.out.println("Here you can edit any students or any course");                //editing student is working but editing course does not work!!
                     System.out.println("to edit a student press S and to edit a course press C");
                     String choice4 = scanner.nextLine();
                     if (choice4.equalsIgnoreCase("S")) {
