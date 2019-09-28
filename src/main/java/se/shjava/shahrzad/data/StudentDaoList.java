@@ -5,11 +5,7 @@ import se.shjava.shahrzad.model.Student;
 import java.util.*;
 
 public class StudentDaoList implements StudentDao {
-    private List<Student> studentsList;
-
-    public StudentDaoList() {
-        studentsList= new ArrayList<>();
-    }
+    private static List<Student> studentsList= new ArrayList<>();
 
     @Override
     public Student saveStudent(Student student) {           //tested!

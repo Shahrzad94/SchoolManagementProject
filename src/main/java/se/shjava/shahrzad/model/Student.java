@@ -14,9 +14,9 @@ public class Student {
         this.address = address;
     }
 
-   /* public Student(String studentName, String email, String address){
+    public Student(String studentName, String email, String address){
         this(++StudentIdCounter, studentName, email, address);
-    }*/
+    }
 
     public int getStudentId() {
         return studentId;

@@ -3,6 +3,7 @@ package se.shjava.shahrzad.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Course {
     private int courseId;
@@ -19,9 +20,9 @@ public class Course {
         this.weekDuration = weekDuration;
         this.listOfStudents=new ArrayList<>();
     }
-   /* public Course(String courseName, LocalDate startDate, int weekDuration){
+    public Course(String courseName, LocalDate startDate, int weekDuration){
         this(++courseIdCounter, courseName,startDate,weekDuration);
-    }*/
+    }
 
     public String getCourseName() {
         return courseName;
@@ -86,8 +87,30 @@ public class Course {
         return null;
    }
 
-   public void deleteStudentById( int id)
-   {
-       removeStudent(findStudentById(id));
-   }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return courseId == course.courseId &&
+                Objects.equals(courseName, course.courseName) &&
+                Objects.equals(startDate, course.startDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(courseId, courseName, startDate);
+    }
+
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", startDate=" + startDate +
+                ", weekDuration=" + weekDuration +
+                ", listOfStudents=" + listOfStudents +
+                '}';
+    }
 }
