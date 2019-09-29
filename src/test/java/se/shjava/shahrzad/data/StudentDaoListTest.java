@@ -13,30 +13,38 @@ import static org.junit.Assert.assertNotNull;
 
 public class StudentDaoListTest {
     private StudentDaoList testStudentDaoListObj;
-    private Student testStudents;
-    private Student testNewStudent;
+    private Student testStudent1;
+
+
+
+    private Student[] data(){
+        Student[] students= {
+                new Student(1,"w", "ww", "wwww")
+        };
+        return students;
+    }
 
     @Before
     public void init(){
-        testStudents= new Student(1, "test", "test@test.com", "addresstest");
-        testNewStudent= new Student(20, "shahrzad", "sh@gmail.com", "Campustest");
+        testStudent1= new Student(1, "test", "test@test.com", "addresstest");
+       // testNewStudent= new Student(20, "shahrzad", "sh@gmail.com", "Campustest");
 
         testStudentDaoListObj=new StudentDaoList();
     }
 
     @Test
     public void saveStudent_test(){
-     Student expected= testStudents;
-     Student actual= testStudentDaoListObj.saveStudent(testStudents);
+     Student expected= testStudent1;
+     Student actual= testStudentDaoListObj.saveStudent(testStudent1);
      assertEquals(expected,actual);
-     actual=testStudentDaoListObj.saveStudent(testStudents);
+     actual=testStudentDaoListObj.saveStudent(testStudent1);
      assertEquals(null, actual);
     }
 
     @Test
     public void test_Find_Student_byEmail(){
-    testStudentDaoListObj.saveStudent(testStudents);
-    Student expected= testStudents;
+    testStudentDaoListObj.saveStudent(testStudent1);
+    Student expected= testStudent1;
     Student actual= testStudentDaoListObj.findByEmail("test@test.com");
     assertEquals(expected,actual);
     }
@@ -51,23 +59,27 @@ public class StudentDaoListTest {
     }
     @Test
     public void test_removeStudent(){
-        testStudentDaoListObj.saveStudent(testStudents);
-        assertEquals(true,testStudentDaoListObj.deleteStudent(testStudents));
-        assertEquals(false,testStudentDaoListObj.deleteStudent(testStudents));
+        testStudentDaoListObj.saveStudent(testStudent1);
+        assertEquals(true,testStudentDaoListObj.deleteStudent(testStudent1));
+        assertEquals(false,testStudentDaoListObj.deleteStudent(testStudent1));
     }
     @Test
     public void test_Find_Student_byId()
     {
-        testStudentDaoListObj.saveStudent(testStudents);
-        Student excepted= testStudents;
-        Student actual= testStudentDaoListObj.findById(20);
-      //  assertEquals(excepted, actual);
-       actual= testStudentDaoListObj.findById(30);
-       assertEquals(null, actual);
+        testStudentDaoListObj.saveStudent(testStudent1);
+        Student excepted= testStudent1;
+        Student actual= testStudentDaoListObj.findById(1);
+        assertEquals(excepted, actual);                    //oops
     }
 
     @Test
     public void test_Find_Student_byName(){
+    List<Student> expected= new ArrayList<>();
+    expected.add(testStudent1);
+    testStudentDaoListObj.saveStudent(testStudent1);
+
+    List<Student> actual= testStudentDaoListObj.findByName("test");
+    assertEquals(expected, actual);
 
 
     }

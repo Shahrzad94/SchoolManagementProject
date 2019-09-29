@@ -7,11 +7,11 @@ import se.shjava.shahrzad.model.Course;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CourseDaoListTest {
 
@@ -59,12 +59,27 @@ public class CourseDaoListTest {
 
     @Test
     public void test_Find_Course_by_Name(){                   //problem (Assert.java:743)
-
+        List<Course> expected = new ArrayList<>();
+        expected.add(testCourse1);
+        testCourseDaoList.saveCourse(testCourse1);
+        Assert.assertEquals(expected, testCourseDaoList.findByName("Test88"));
     }
 
     @Test
     public void test_Find_Course_by_Date(){
+        List<Course> expected= new ArrayList<>();
+        expected.add(testCourse1);
+        testCourseDaoList.saveCourse(testCourse1);
+      assertEquals(expected, testCourseDaoList.findByDate(LocalDate.parse("2019-10-30")));
 
+
+   }
+   @Test
+    public void test_remove_course(){
+
+        List<Course> expected= new ArrayList<>();
+        expected.add(testCourse1);
+        expected.remove(testCourse1);
    }
 
 

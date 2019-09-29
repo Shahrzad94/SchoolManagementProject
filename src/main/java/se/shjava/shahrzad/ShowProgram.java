@@ -34,8 +34,12 @@ public class ShowProgram {
                     "1.Create new Courses and Students" + " " +
                     "2. Register and remove students to/from courses" + " " +
                     "3. Finding students and courses " + " " +
-                    "4. Edit students and courses");
+                    "4. Edit students and courses" + " " +
+                    "5. Exit "  );
             String getInput = scanner.nextLine();
+            if(getInput.equalsIgnoreCase("5")){
+                break;
+            }
             switch (getInput) {
                 case "1":
                     System.out.println(" To create a course click C and to create a student click S");
@@ -54,7 +58,7 @@ public class ShowProgram {
                         String courseDuration = scanner.nextLine();
                         int duration = Integer.parseInt(courseDuration);
                         Course newCourse = new Course(courseId, courseName, dateOfIssue, duration);
-                        System.out.println("Course is created!");
+                        System.out.println("Course is created!" + newCourse.toString());
 
                     } else if (getNumber.equalsIgnoreCase("S")) {
                         System.out.println("Enter the student id");
@@ -80,17 +84,26 @@ public class ShowProgram {
                         System.out.println(" ");
                         Scanner choice2 = new Scanner(System.in);
                         Student studentMail = studentList.findByEmail(choice2.nextLine());
-                        System.out.println("You have entered the requested email ");
-                        System.out.println("Student is registered!");
-                        courseList.findById(scanner.nextInt()).registerStudents(studentMail);
+                        System.out.println("You have entered the requested email " );
+                        System.out.println("Student is registered!" + studentMail);
                         System.out.println("*****************************************************************************************************************************************");
 
-                   } else if (choice.equalsIgnoreCase("D")) {             //deleting student is left
+                   } else if (choice.equalsIgnoreCase("D")) {                                //deleting student is left
                         System.out.println("Here you can delete a student from a course");
+                        for(Course course: courseList.findAll()){
+                            System.out.println(course.getCourseName());}
                         System.out.println("to delete a student enter a valid mail");
-                             // working ....
+                        Student email = studentList.findByEmail(scanner.nextLine());
+                      try{
+                          courseList.findById(scanner.nextInt()).removeStudent(email);}
+                      catch ( InputMismatchException ex){
+                          System.out.println("Enter a valid input");
+                      }
+                        System.out.println("Selected student is removed now ...");
 
-                    } break;
+                    }
+
+                    break;
                 }
                 case "3": {
                     System.out.println("Here you can find a student or your course");
@@ -141,15 +154,14 @@ public class ShowProgram {
                     }
                 }
                 break;
-                case "4": {           // need to check igen
-                    System.out.println("Here you can edit any students or any course");                //editing student is working but editing course does not work!!
+
+                case "4": {
+                    System.out.println("Here you can edit any students or any course");
                     System.out.println("to edit a student press S and to edit a course press C");
                     String choice4 = scanner.nextLine();
                     if (choice4.equalsIgnoreCase("S")) {
                         System.out.println("You can enter the student email to edit the student!");
-
-                        Student stByEmail = studentList.findByEmail(scanner.nextLine());
-                        System.out.println("Enter updated information");
+                        System.out.println("******* Enter updated information ********");
                         System.out.println("Edited Name : ");
                         String newName = scanner.nextLine();
                         System.out.println(" Edited Email : ");
@@ -162,23 +174,24 @@ public class ShowProgram {
 
                     } else if(choice4.equalsIgnoreCase("C")){
                         System.out.println("Here you can enter wished course id to edit the chosen course");
-                        System.out.println("Enter new information");
+                        System.out.println("****** Enter new information ******");
                         System.out.println("Enter a new Course name: ");
                         String cName= scanner.nextLine();
-                        System.out.println("Enter a valid issue date");
+                        System.out.println("Enter a valid issue date: ");
                         LocalDate cDate= LocalDate.parse(scanner.nextLine());
-                        System.out.println("Enter a new duration of the course");
+                        System.out.println("Enter a new duration of the course: ");
                         int courseDuration= Integer.parseInt(scanner.next());
 
-                        System.out.println("Your course is edited! ");
+                        System.out.println("Your course is edited :)  ");
                         Course editedCourse= new Course(cName,cDate,courseDuration);
                         courseList.saveCourse(editedCourse);
 
                     }
                     break;
+
+                  }
                 }
 
             }
         }
     }
-}
