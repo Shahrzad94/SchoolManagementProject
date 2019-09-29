@@ -51,14 +51,14 @@ public class ShowProgram {
                         System.out.println("Enter the course id : ");
                         String id = scanner.nextLine();
                         int courseId = Integer.parseInt(id);
-                        System.out.println("Please write the date of issue : ");
+                        System.out.println("Please write the date of issue : yyyy-mm-dd ");
                         String date = scanner.nextLine();
                         LocalDate dateOfIssue = LocalDate.parse(date);
                         System.out.println("Please write the duration of requested course based on weeks: ");
                         String courseDuration = scanner.nextLine();
                         int duration = Integer.parseInt(courseDuration);
                         Course newCourse = new Course(courseId, courseName, dateOfIssue, duration);
-                        System.out.println("Course is created!" + newCourse.toString());
+                        System.out.println("Course is created!"+ " " + newCourse.toString());
 
                     } else if (getNumber.equalsIgnoreCase("S")) {
                         System.out.println("Enter the student id");
@@ -80,12 +80,11 @@ public class ShowProgram {
                     System.out.println(" Register or Remove a student : to register a student enter R and to remove a student enter D ");
                     String choice = scanner.nextLine();
                     if (choice.equalsIgnoreCase("R")) {
-                        System.out.println(" Register a student: Here you need to enter a valid email to register the student by mail :  ");
+                        System.out.println(" Register a student by email: Here you need to enter a valid email:  ");
                         System.out.println(" ");
-                        Scanner choice2 = new Scanner(System.in);
-                        Student studentMail = studentList.findByEmail(choice2.nextLine());
-                        System.out.println("You have entered the requested email " );
-                        System.out.println("Student is registered!" + studentMail);
+                        String regiteringEmail= scanner.nextLine();
+                        System.out.println("You have entered the email ---> " + "  "+ regiteringEmail );
+                        System.out.println("Student is registered!");
                         System.out.println("*****************************************************************************************************************************************");
 
                    } else if (choice.equalsIgnoreCase("D")) {                                //deleting student is left
@@ -138,7 +137,7 @@ public class ShowProgram {
                                   "3. Course date");
                         String choice3FindingCourse= scanner.nextLine();
                         if(choice3FindingCourse.equalsIgnoreCase("1")){
-                            System.out.println("Finding course by name: pls write the course name");
+                            System.out.println("Finding course by name: pls write the course name: ");
                             String CourseName= scanner.nextLine();
                             System.out.println(courseList.findByName(CourseName));
                         } else if (choice3FindingCourse.equalsIgnoreCase("2")){
@@ -147,7 +146,7 @@ public class ShowProgram {
                             System.out.println(courseList.findById(courseId));
 
                         } else if (choice3FindingCourse.equalsIgnoreCase("3")){
-                            System.out.println("Enter a valid date to find the course ");
+                            System.out.println("Enter a valid date to find the course: ");
                             LocalDate courseDate= LocalDate.parse(scanner.nextLine());
                             System.out.println(courseList.findByDate(courseDate));
                         }
@@ -177,7 +176,7 @@ public class ShowProgram {
                         System.out.println("****** Enter new information ******");
                         System.out.println("Enter a new Course name: ");
                         String cName= scanner.nextLine();
-                        System.out.println("Enter a valid issue date: ");
+                        System.out.println("Enter a valid issue date: format yyyy-mm-dd ");
                         LocalDate cDate= LocalDate.parse(scanner.nextLine());
                         System.out.println("Enter a new duration of the course: ");
                         int courseDuration= Integer.parseInt(scanner.next());
@@ -185,13 +184,11 @@ public class ShowProgram {
                         System.out.println("Your course is edited :)  ");
                         Course editedCourse= new Course(cName,cDate,courseDuration);
                         courseList.saveCourse(editedCourse);
-
+                        System.out.println("***********************************************************");
                     }
                     break;
-
                   }
                 }
-
             }
         }
     }

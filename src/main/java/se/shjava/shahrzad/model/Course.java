@@ -110,7 +110,6 @@ public class Course {
                 ", courseName='" + courseName + '\'' +
                 ", startDate=" + startDate +
                 ", weekDuration=" + weekDuration +
-                ", listOfStudents=" + listOfStudents +
                 '}';
     }
 }

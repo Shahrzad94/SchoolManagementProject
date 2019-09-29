@@ -1,5 +1,7 @@
 package se.shjava.shahrzad.model;
 
+import java.util.Objects;
+
 public class Student {
     private  int studentId;
     private static int StudentIdCounter;
@@ -55,5 +57,21 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentId == student.studentId &&
+                Objects.equals(studentName, student.studentName) &&
+                Objects.equals(email, student.email) &&
+                Objects.equals(address, student.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentId, studentName, email, address);
     }
 }
